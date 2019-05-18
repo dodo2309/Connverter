@@ -1,16 +1,43 @@
-def get_temp():
+def set_einheit():
     while True:
-        C = input("Gib die Temperatur in Grad Celsius an: ")
-        try:
-            C = float(C)
-            return C
-        except ValueError:
-            print("Keine gültige Zahl")
 
-def connvert_temp(C):
+        E = input("Welche Einheit möchtest du umrechnen?:\n[1:°Celsius->°Kelvin]\n[2:°Kelvin->°Celsius]")
+        return E
+
+
+def get_temp(E):
+    if E == "1":
+        while True:
+            C = input("Gib die Temperatur in Grad Celsius an: ")
+            try:
+                C = float(C)
+                return C
+            except ValueError:
+                print("Keine gültige Zahl")
+    elif E == "2":
+        while True:
+            C = input("Gib die Temperatur in Grad Kelvin an: ")
+            try:
+                C = float(C)
+                return C
+            except ValueError:
+                print("Keine gültige Zahl")
+    else:
+        print("Nicht möglich")
+
+def connvert_tempC(C):
     K = C + 273.15
     return K
 
+def connvert_tempK(C):
+    K = C - 273.15
+    return K
+
 if __name__ == "__main__":
-    C = get_temp()
-    print("Das sind " + str(connvert_temp(C)) + " Kelvin")
+    E = set_einheit()
+    C = get_temp(E)
+    if E == "1":
+        print("Das sind " + str(connvert_tempC(C)) + " Grad Kelvin")
+
+    if E == "2":
+        print("Das sind " + str(connvert_tempK(C)) + " Grad Celsius")
